@@ -483,10 +483,11 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                     }
 
 
-                    parseDataFrame();
+                    let message = parseDataFrame();
+                    console.log(message);
 
-                    for (var i = 0; i < dataBag.length; i++) {
-                        const deviceTelemetryDataProduction = JSON.stringify(dataBag[i]);
+                    for (var i = 0; i < message.length; i++) {
+                        const deviceTelemetryDataProduction = JSON.stringify(message[i]);
                         console.log(
                             "production data (data frame): ",
                             deviceTelemetryDataProduction
