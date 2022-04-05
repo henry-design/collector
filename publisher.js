@@ -81,7 +81,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                     if (messageData.slice(20, 22) == 01) {
                         await this.send(
                             (loginFrameReply = new Buffer.from(
-                                `403A0009${loginFrameClientAddress}0100${loginsumbyte.toString(16).slice(1,3)}0D0A`
+                                `403A0009${loginFrameClientAddress}0100${loginsumbyte.toString(16).slice(1,3)}0D0A`, "hex"
 
                             ).toString("ascii")),
                             remote.port,
@@ -139,18 +139,18 @@ amqp.connect("amqp://localhost", function(error0, connection) {
 
                         await this.send(
                             (dataSent = new Buffer.from(
-                                `403A000B${loginFrameClientAddress}0801${dataFramePacketNo}00${datasumbyte.toString(16).slice(1,3)}0D0A`
+                                `403A000B${loginFrameClientAddress}0801${dataFramePacketNo}00${datasumbyte.toString(16)}0D0A`, "hex"
 
-                            ).toString("ascii")),
+                            )),
                             remote.port,
                             remote.address,
                             function(err, bytes) {
                                 if (err) throw err;
                                 console.log(
                                     `Data Frame Reply Sent: ${Buffer.from(
-                    dataSent,"ascii"
+                    dataSent,"hex"
                     
-                  )} bytes: ${bytes} sent to ${
+                  ).toString("ascii")} bytes: ${bytes} sent to ${
                     remote.address
                   }:${remote.port}`
                                 );
