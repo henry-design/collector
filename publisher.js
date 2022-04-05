@@ -76,12 +76,12 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                         0x00
                     )
 
-
+                    console.log(`${loginsumbyte.toString(16).slice(1)}`)
                     let loginFrameClientAddress = messageData.slice(8, 20);
                     if (messageData.slice(20, 22) == 01) {
                         await this.send(
                             (loginFrameReply = new Buffer.from(
-                                `403A0009${loginFrameClientAddress}0100${loginsumbyte.toString(16)}0D0A`
+                                `403A0009${loginFrameClientAddress}0100${loginsumbyte.toString(16).toUpperCase().slice(1)}0D0A`
 
                             )),
                             remote.port,
