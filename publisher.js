@@ -157,7 +157,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                                 );
                             }
                         );
-                        console.log(`DataframeReply: 403A000B${loginFrameClientAddress}0801${dataFramePacketNo}00${datasumbyte.toString(16)}0D0A`)
+                        console.log(`DataframeReply: 403A000B${loginFrameClientAddress}0801${dataFramePacketNo}00${datasumbyte.toString(16).slice(1)}0D0A`)
                     } else {
                         console.log("function code not 08 or 01");
                     }
