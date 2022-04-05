@@ -90,7 +90,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                                 if (err) throw err;
                                 console.log(
                                     `Login Frame Reply Sent: ${Buffer.from(
-                    loginFrameReply
+                    loginFrameReply, "ASCII"
                     
                   )} bytes: ${bytes} sent to ${
                     remote.address
@@ -148,7 +148,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                                 if (err) throw err;
                                 console.log(
                                     `Data Frame Reply Sent: ${Buffer.from(
-                    dataSent
+                    dataSent,"ASCII"
                     
                   )} bytes: ${bytes} sent to ${
                     remote.address
