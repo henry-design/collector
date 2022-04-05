@@ -98,6 +98,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                                 );
                             }
                         );
+                        console.log(`Login frame reply: 403A0009${loginFrameClientAddress}0100${loginsumbyte.toString(16).slice(1,3)}0D0A`)
                     } else if (messageData.slice(20, 22) == 08) {
                         let dataFramePacketNo = messageData.slice(24, 26);
                         const getDataFrame = (
@@ -156,6 +157,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                                 );
                             }
                         );
+                        console.log(`DataframeReply: 403A000B${loginFrameClientAddress}0801${dataFramePacketNo}00${datasumbyte.toString(16)}0D0A`)
                     } else {
                         console.log("function code not 08 or 01");
                     }
