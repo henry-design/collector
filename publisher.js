@@ -5,92 +5,92 @@ const HOST = "0.0.0.0";
 const apiBase = require("./apiBase");
 
 amqp.connect("amqp://localhost", function(error0, connection) {
-    if (error0) {
-        throw error0;
-    }
-    connection.createChannel(function(error1, channel) {
-        if (error1) {
-            throw error1;
-        }
-        const queueOne = "loginframe";
-        const queueTwo = "dataframe";
-        const server = [];
-        for (let i = 0; i < 1; i++) {
-            server[i] = dgram.createSocket("udp4");
+            if (error0) {
+                throw error0;
+            }
+            connection.createChannel(function(error1, channel) {
+                        if (error1) {
+                            throw error1;
+                        }
+                        const queueOne = "loginframe";
+                        const queueTwo = "dataframe";
+                        const server = [];
+                        for (let i = 0; i < 1; i++) {
+                            server[i] = dgram.createSocket("udp4");
 
-            server[i].on(
-                "listening",
-                function() {
-                    const address = this.address();
-                    console.log(
-                        "udp Server listening on " + address.address + ":" + address.port
-                    );
-                }.bind(server[i])
-            );
+                            server[i].on(
+                                "listening",
+                                function() {
+                                    const address = this.address();
+                                    console.log(
+                                        "udp Server listening on " + address.address + ":" + address.port
+                                    );
+                                }.bind(server[i])
+                            );
 
-            server[i].on("close", function() {
-                console.log("udp socket closed..");
-            });
+                            server[i].on("close", function() {
+                                console.log("udp socket closed..");
+                            });
 
-            server[i].on(
-                "message",
-                async function(message, remote) {
+                            server[i].on(
+                                    "message",
+                                    async function(message, remote) {
 
-                    console.log(
-                        "Data received from bulk meter: " +
-                        Buffer.from(message, "ascii").toString("hex")
+                                        console.log(
+                                            "Data received from bulk meter: " +
+                                            Buffer.from(message, "ascii").toString("hex")
 
-                    );
+                                        );
 
-                    const messageData = Buffer.from(message, "ascii").toString("hex");
+                                        const messageData = Buffer.from(message, "ascii").toString("hex");
 
-                    const getLoginFrame = (l1, l2, l3, l4, l5, l6, l7, l8, l9, l10) => {
-                        return (
-                                l1 + l2 + l3 + l4 + l5 + l6 + l7 + l8 + l9 + l10
+                                        const getLoginFrame = (l1, l2, l3, l4, l5, l6, l7, l8, l9, l10) => {
+                                            return (
+                                                    l1 + l2 + l3 + l4 + l5 + l6 + l7 + l8 + l9 + l10
 
-                            )
-                            //.toString(16)
-                            //.slice(1, 3);
-
-
-                    };
+                                                )
+                                                //.toString(16)
+                                                //.slice(1, 3);
 
 
+                                        };
 
 
 
 
-                    var loginsumbyte = new Int8Array(1)
-                    loginsumbyte = (
-                        0x00 +
-                        0x09 +
-                        Number(`0x${messageData.slice(8, 10)}`) +
-                        Number(`0x${messageData.slice(10, 12)}`) +
-                        Number(`0x${messageData.slice(12, 14)}`) +
-                        Number(`0x${messageData.slice(14, 16)}`) +
-                        Number(`0x${messageData.slice(16, 18)}`) +
-                        Number(`0x${messageData.slice(18, 20)}`) +
 
-                        0x01 +
 
-                        0x00
-                    )
+                                        var loginsumbyte = new Int8Array(1)
+                                        loginsumbyte = (
+                                            0x00 +
+                                            0x09 +
+                                            Number(`0x${messageData.slice(8, 10)}`) +
+                                            Number(`0x${messageData.slice(10, 12)}`) +
+                                            Number(`0x${messageData.slice(12, 14)}`) +
+                                            Number(`0x${messageData.slice(14, 16)}`) +
+                                            Number(`0x${messageData.slice(16, 18)}`) +
+                                            Number(`0x${messageData.slice(18, 20)}`) +
 
-                    console.log(`${loginsumbyte.toString(16).slice(1)}`)
-                    let loginFrameClientAddress = messageData.slice(8, 20);
-                    if (messageData.slice(20, 22) == 01) {
-                        await this.send(
-                            (loginFrameReply = new Buffer.from(
-                                `403A0009${loginFrameClientAddress}0100${loginsumbyte.toString(16).slice(1,3)}0D0A`, "hex"
+                                            0x01 +
 
-                            ).toString("ascii")),
-                            remote.port,
-                            remote.address,
-                            function(err, bytes) {
-                                if (err) throw err;
-                                console.log(
-                                    `Login Frame Reply Sent: ${Buffer.from(
-                    loginFrameReply, "ascii"
+                                            0x00
+                                        )
+
+                                        //console.log(`${loginsumbyte.toString(16).slice(1)}`)
+                                        let loginFrameClientAddress = messageData.slice(8, 20);
+                                        if (messageData.slice(20, 22) == 01) {
+                                            await this.send(
+                                                    (loginFrameReply = new Buffer.from(
+                                                        `403A0009${loginFrameClientAddress}0100${loginsumbyte.toString(16).slice(1,3)}0D0A`, "hex"
+
+                                                    ).toString("ascii")),
+                                                    remote.port,
+                                                    remote.address,
+                                                    function(err, bytes) {
+                                                        if (err) throw err;
+                                                        console.log(
+                                                                `Login Frame Reply Sent: ${Buffer.from(
+                                        `403A0009${loginFrameClientAddress}0100${loginsumbyte.toString(16).slice(1,3)}0D0A`
                     
                   )} bytes: ${bytes} sent to ${
                     remote.address
@@ -98,7 +98,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                                 );
                             }
                         );
-                        console.log(`Login frame reply: 403A0009${loginFrameClientAddress}0100${loginsumbyte.toString(16).slice(1,3)}0D0A`)
+                        //console.log()
                     } else if (messageData.slice(20, 22) == 08) {
                         let dataFramePacketNo = messageData.slice(24, 26);
                         const getDataFrame = (
@@ -149,7 +149,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                                 if (err) throw err;
                                 console.log(
                                     `Data Frame Reply Sent: ${Buffer.from(
-                    dataSent,"hex"
+                                        `403A000B${loginFrameClientAddress}0801${dataFramePacketNo}00${datasumbyte.toString(16).slice(1)}0D0A`
                     
                   ).toString("ascii")} bytes: ${bytes} sent to ${
                     remote.address
@@ -157,7 +157,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                                 );
                             }
                         );
-                        console.log(`DataframeReply: 403A000B${loginFrameClientAddress}0801${dataFramePacketNo}00${datasumbyte.toString(16).slice(1)}0D0A`)
+                        //console.log()
                     } else {
                         console.log("function code not 08 or 01");
                     }
