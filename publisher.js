@@ -135,12 +135,12 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                             0x08 +
                             0x01 +
                             Number(`0x${messageData.slice(24, 26)}`) +
-                            0x01
+                            0x00
                         )
 
                         await this.send(
                             (dataSent = new Buffer.from(
-                                `403A000B${loginFrameClientAddress}0801${dataFramePacketNo}01${datasumbyte.toString(16)}0D0A`, "hex"
+                                `403A000B${loginFrameClientAddress}0801${dataFramePacketNo}00${datasumbyte.toString(16)}0D0A`, "hex"
 
                             )),
                             remote.port,
