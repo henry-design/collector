@@ -168,7 +168,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                         );
                         console.log("whichframeDataFrameSend:", whichframeDataFrameSend);
 
-                        // ** Number of this frame table
+                        //  Number of this frame table
                         const numberofThisFrameTableDataFrameSend =
                             intialPayloadDataFrameSend.slice(26, 28);
                         console.log(
@@ -197,7 +197,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
 
                                 // ** Station number
                                 const stationNumberDataFrameSend = frames[i].slice(0, 2);
-                                console.log("stationNumberDataFrameSend:", stationNumberDataFrameSend);
+                                // console.log("stationNumberDataFrameSend:", stationNumberDataFrameSend);
 
                                 //** Meter type
                                 const meterTypeDataFrameSend = frames[i].slice(2, 4);
