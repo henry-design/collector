@@ -104,7 +104,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                         intialPayloadDataFrameSend.slice(26, 28);
                     console.log(
                       "numberofThisFrameTableDataFrameSend:",
-                      numberofThisFrameTableDataFrameSend,"/n"
+                      numberofThisFrameTableDataFrameSend,"\n"
                      );
 
                     function parseDataFrame() {
