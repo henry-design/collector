@@ -156,25 +156,25 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                         // ** Total number of frames
                         const totalNumberofFramesDataFrameSend =
                             intialPayloadDataFrameSend.slice(22, 24);
-                        // console.log(
-                        //   "totalNumberofFramesDataFrameSend:",
-                        //   totalNumberofFramesDataFrameSend
-                        // );
+                        console.log(
+                          "totalNumberofFramesDataFrameSend:",
+                          totalNumberofFramesDataFrameSend
+                        );
 
                         // ** Which frame
                         const whichframeDataFrameSend = intialPayloadDataFrameSend.slice(
                             24,
                             26
                         );
-                        // console.log("whichframeDataFrameSend:", whichframeDataFrameSend);
+                        console.log("whichframeDataFrameSend:", whichframeDataFrameSend);
 
                         // ** Number of this frame table
                         const numberofThisFrameTableDataFrameSend =
                             intialPayloadDataFrameSend.slice(26, 28);
-                        // console.log(
-                        //   "numberofThisFrameTableDataFrameSend:",
-                        //   numberofThisFrameTableDataFrameSend
-                        // );
+                        console.log(
+                          "numberofThisFrameTableDataFrameSend:",
+                          numberofThisFrameTableDataFrameSend
+                        );
                         instantaneousFlow = intialPayloadDataFrameSend.slice(28, intialPayloadDataFrameSend.length - 6);
                         var frames = [];
 
@@ -197,7 +197,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
 
                                 // ** Station number
                                 const stationNumberDataFrameSend = frames[i].slice(0, 2);
-                                // console.log("stationNumberDataFrameSend:", stationNumberDataFrameSend);
+                                console.log("stationNumberDataFrameSend:", stationNumberDataFrameSend);
 
                                 //** Meter type
                                 const meterTypeDataFrameSend = frames[i].slice(2, 4);

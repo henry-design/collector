@@ -186,11 +186,11 @@ amqp.connect("amqp://localhost", function (error0, connection) {
             16
           );
           // todo: run more tests for more cases
-          // console.log("reportingCycleFrameSend:", reportingCycleFrameSend);
-          // console.log(
-          //   "reportingCycleFrameSendAnalysis:",
-          //   reportingCycleFrameSendAnalysis
-          // );
+          console.log("reportingCycleFrameSend:", reportingCycleFrameSend);
+          console.log(
+            "reportingCycleFrameSendAnalysis:",
+            reportingCycleFrameSendAnalysis
+          );
 
           //**  Collecting cycle
           const collectingCycleFrameSend = intialPayloadLoginFrameSend.slice(
@@ -199,11 +199,11 @@ amqp.connect("amqp://localhost", function (error0, connection) {
           );
           const collectingCycleFrameSendAnalysis =
             parseInt(collectingCycleFrameSend, 16) / 60;
-          // console.log("collectingCycleFrameSend:", collectingCycleFrameSend);
-          // console.log(
-          //   "collectingCycleFrameSendAnalysis:",
-          //   collectingCycleFrameSendAnalysis
-          // );
+          console.log("collectingCycleFrameSend:", collectingCycleFrameSend);
+          console.log(
+            "collectingCycleFrameSendAnalysis:",
+            collectingCycleFrameSendAnalysis
+          );
 
           //**  Meter’s serial number
           const meterSerialNumberFrameSend = intialPayloadLoginFrameSend.slice(

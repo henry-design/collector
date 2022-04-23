@@ -14,6 +14,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                         }
                         const queueOne = "loginframe";
                         const queueTwo = "dataframe";
+                       
                         const server = [];
                         for (let i = 0; i < 1; i++) {
                             server[i] = dgram.createSocket("udp4");
@@ -23,8 +24,9 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                                 function() {
                                     const address = this.address();
                                     console.log(
-                                        "udp Server listening on " + address.address + ":" + address.port
+                                        `udp Server  listening on address ${ address.address}  ${address.port}`
                                     );
+                                    
                                 }.bind(server[i])
                             );
 
