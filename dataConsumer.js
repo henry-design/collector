@@ -488,9 +488,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
 
                     for (var i = 0; i < message.length; i++) {
                         const deviceTelemetryDataProduction = JSON.stringify(message[i]);
-                        console.log(
-                            `production data (data frame): ${deviceTelemetryDataProduction}\n\n`
-                        );
+                        
                         // console.log(" [x] Received %s", msg.content.toString());
                         const sharesAccessSignature =
                             "SharedAccessSignature sr=testBulkMeterIotHub.azure-devices.net%2Fdevices%2FbulkMeter&sig=vv58zgYeIeboLncb%2FC41UKj6ud36qn1mG6EV6ogNuUw%3D&se=1628305176";
@@ -511,7 +509,10 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                                         //     "responseDataFrame after post request",
                                         //     response.data
                                         // );
-                                        console.log("responseData Axios", response.status);
+                                        console.log(
+                                            `production data (data frame): ${deviceTelemetryDataProduction}\n`
+                                        );
+                                        console.log(`responseData Axios: ${response.status}\n`);
                                         
                                     },
                                     (error) => {
