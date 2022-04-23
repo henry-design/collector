@@ -484,7 +484,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
 
 
                     let message = parseDataFrame();
-                    // console.log(message);
+                    console.log(`DataFrame received: ${intialPayloadDataFrameSend}/n/n`);
 
                     for (var i = 0; i < message.length; i++) {
                         const deviceTelemetryDataProduction = JSON.stringify(message[i]);
