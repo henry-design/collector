@@ -489,8 +489,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                     for (var i = 0; i < message.length; i++) {
                         const deviceTelemetryDataProduction = JSON.stringify(message[i]);
                         console.log(
-                            "production data (data frame): ",
-                            deviceTelemetryDataProduction,"/n/n"
+                            `production data (data frame): ${deviceTelemetryDataProduction}/n/n`
                         );
                         // console.log(" [x] Received %s", msg.content.toString());
                         const sharesAccessSignature =
