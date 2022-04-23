@@ -507,11 +507,12 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                                 )
                                 .then(
                                     (response) => {
-                                        console.log(
-                                            "responseDataFrame after post request",
-                                            response.data
-                                        );
+                                        // console.log(
+                                        //     "responseDataFrame after post request",
+                                        //     response.data
+                                        // );
                                         console.log("responseData Axios", response.status);
+                                        
                                     },
                                     (error) => {
                                         console.log("errorData Axios", error);
