@@ -35,7 +35,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                     const intialPayloadDataFrameSend = Buffer.from(
                         msg.content
                     ).toString();
-                    console.log(`DataFrame received: ${intialPayloadDataFrameSend}\n\n`);
+                    console.log(`\nDataFrame received: ${intialPayloadDataFrameSend}\n`);
                     // console.log(intialPayloadDataFrameSend, "intialPayloadDataFrameSend");
                     //console.log("dataframeLength", intialPayloadDataFrameSend.length);
 
@@ -511,7 +511,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                                         //     response.data
                                         // );
                                         console.log(
-                                            `production data (data frame): ${deviceTelemetryDataProduction}\n`
+                                            `production data (data frame): ${deviceTelemetryDataProduction}`
                                         );
                                         console.log(`responseData Axios: ${response.status}\n`);
                                         
