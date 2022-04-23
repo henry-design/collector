@@ -104,7 +104,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                         intialPayloadDataFrameSend.slice(26, 28);
                     console.log(
                       "numberofThisFrameTableDataFrameSend:",
-                      numberofThisFrameTableDataFrameSend
+                      numberofThisFrameTableDataFrameSend,"/n"
                      );
 
                     function parseDataFrame() {
@@ -154,28 +154,28 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                         //   functionCodeDataFrameSendAnalysis
                         // );
 
-                        // ** Total number of frames
-                        const totalNumberofFramesDataFrameSend =
-                            intialPayloadDataFrameSend.slice(22, 24);
-                        console.log(
-                          "totalNumberofFramesDataFrameSend:",
-                          totalNumberofFramesDataFrameSend
-                        );
+                        // // ** Total number of frames
+                        // const totalNumberofFramesDataFrameSend =
+                        //     intialPayloadDataFrameSend.slice(22, 24);
+                        // console.log(
+                        //   "totalNumberofFramesDataFrameSend:",
+                        //   totalNumberofFramesDataFrameSend
+                        // );
 
-                        // ** Which frame
-                        const whichframeDataFrameSend = intialPayloadDataFrameSend.slice(
-                            24,
-                            26
-                        );
-                        console.log("whichframeDataFrameSend:", whichframeDataFrameSend);
+                        // // ** Which frame
+                        // const whichframeDataFrameSend = intialPayloadDataFrameSend.slice(
+                        //     24,
+                        //     26
+                        // );
+                        // console.log("whichframeDataFrameSend:", whichframeDataFrameSend);
 
-                        //  Number of this frame table
-                        const numberofThisFrameTableDataFrameSend =
-                            intialPayloadDataFrameSend.slice(26, 28);
-                        console.log(
-                          "numberofThisFrameTableDataFrameSend:",
-                          numberofThisFrameTableDataFrameSend
-                        );
+                        // //  Number of this frame table
+                        // const numberofThisFrameTableDataFrameSend =
+                        //     intialPayloadDataFrameSend.slice(26, 28);
+                        // console.log(
+                        //   "numberofThisFrameTableDataFrameSend:",
+                        //   numberofThisFrameTableDataFrameSend
+                        // );
                         instantaneousFlow = intialPayloadDataFrameSend.slice(28, intialPayloadDataFrameSend.length - 6);
                         var frames = [];
 
