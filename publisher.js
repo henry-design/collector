@@ -118,7 +118,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                   Number(`0x${messageData.slice(18, 20)}`),
                   0x08,
                   0x01,
-                  Number(`0x${messageData.slice(24, 26)}`),
+                  Number(`0x${messageData.slice(26, 28)}`),
                   0x00
                 )}0D0A`,
                 "hex"
