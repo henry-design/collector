@@ -38,8 +38,8 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                                     "message",
                                     async function(message, remote) {
                                         console.log(
-                                            "Data received from bulk meter: " +
-                                            Buffer.from(message, "ascii").toString("hex")+"\n\n"
+                                            "\n\nData received from bulk meter: " +
+                                            Buffer.from(message, "ascii").toString("hex")+" "
                                         );
                                         const messageData = Buffer.from(message, "ascii").toString("hex");
                                         const getLoginFrame = (l1, l2, l3, l4, l5, l6, l7, l8, l9, l10) => {
