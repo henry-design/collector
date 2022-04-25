@@ -83,7 +83,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
               }
             );
           } else if (messageData.slice(20, 22) == 08) {
-            let dataFramePacketNo = messageData.slice(22, 24);
+            let dataFramePacketNo = messageData.slice(22, 24);//24,26
             const getDataFrame = (
               l1,
               l2,
@@ -118,7 +118,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                   Number(`0x${messageData.slice(18, 20)}`),
                   0x08,
                   0x01,
-                  Number(`0x${messageData.slice(22, 24)}`),
+                  Number(`0x${messageData.slice(22, 24)}`),//24,26
                   0x00
                 )}0D0A`,
                 "hex"
