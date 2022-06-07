@@ -487,65 +487,65 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                     let message = parseDataFrame();
                    
 
-                    for (var i = 0; i < message.length; i++) {
-                        const deviceTelemetryDataProduction = JSON.stringify(message[i]);
+                    // for (var i = 0; i < message.length; i++) {
+                    //     const deviceTelemetryDataProduction = JSON.stringify(message[i]);
                         
-                        // console.log(" [x] Received %s", msg.content.toString());
-                        const sharesAccessSignature =
-                            "SharedAccessSignature sr=testBulkMeterIotHub.azure-devices.net%2Fdevices%2FbulkMeter&sig=vv58zgYeIeboLncb%2FC41UKj6ud36qn1mG6EV6ogNuUw%3D&se=1628305176";
-                        if (deviceTelemetryDataProduction) {
-                            //**  post to http endpoint
-                            axios
-                                .post(
-                                    "https://gosoftcoreapi.azurewebsites.net/api/Admin/ZonalMeterTelemetry",
-                                    deviceTelemetryDataProduction, {
-                                        headers: {
-                                            "Content-Type": "application/json",
-                                        },
-                                    }
-                                )
-                                .then(
-                                    (response) => {
-                                        // console.log(
-                                        //     "responseDataFrame after post request",
-                                        //     response.data
-                                        // );
-                                        console.log(
-                                            `production data (data frame): ${deviceTelemetryDataProduction}`
-                                        );
-                                        console.log(`responseData Axios: ${response.status}\n`);
+                    //     // console.log(" [x] Received %s", msg.content.toString());
+                    //     const sharesAccessSignature =
+                    //         "SharedAccessSignature sr=testBulkMeterIotHub.azure-devices.net%2Fdevices%2FbulkMeter&sig=vv58zgYeIeboLncb%2FC41UKj6ud36qn1mG6EV6ogNuUw%3D&se=1628305176";
+                    //     if (deviceTelemetryDataProduction) {
+                    //         //**  post to http endpoint
+                    //         axios
+                    //             .post(
+                    //                 "https://gosoftcoreapi.azurewebsites.net/api/Admin/ZonalMeterTelemetry",
+                    //                 deviceTelemetryDataProduction, {
+                    //                     headers: {
+                    //                         "Content-Type": "application/json",
+                    //                     },
+                    //                 }
+                    //             )
+                    //             .then(
+                    //                 (response) => {
+                    //                     // console.log(
+                    //                     //     "responseDataFrame after post request",
+                    //                     //     response.data
+                    //                     // );
+                    //                     console.log(
+                    //                         `production data (data frame): ${deviceTelemetryDataProduction}`
+                    //                     );
+                    //                     console.log(`responseData Axios: ${response.status}\n`);
                                         
-                                    },
-                                    (error) => {
-                                        console.log("errorData Axios", error);
-                                    }
-                                );
-                        } else {
-                            // axios
-                            //   .post(
-                            //     "https://testBulkMeterIotHub.azure-devices.net/devices/bulkMeter/messages/events?api-version=2020-03-13",
-                            //     {
-                            //       device: "bulkMeter",
-                            //       data: deviceTelemetryCosmosDBProduction,
-                            //     },
-                            //     {
-                            //       headers: {
-                            //         Authorization: `${sharesAccessSignature}`,
-                            //       },
-                            //     }
-                            //   )
-                            //   .then(
-                            //     (response) => {
-                            //       console.log("responseData Axios", response.status);
-                            //     },
-                            //     (error) => {
-                            //       console.log("errorData Axios", error);
-                            //     }
-                            //   );
-                            console.log("not sending data frame to  cosmos");
+                    //                 },
+                    //                 (error) => {
+                    //                     console.log("errorData Axios", error);
+                    //                 }
+                    //             );
+                    //     } else {
+                    //         // axios
+                    //         //   .post(
+                    //         //     "https://testBulkMeterIotHub.azure-devices.net/devices/bulkMeter/messages/events?api-version=2020-03-13",
+                    //         //     {
+                    //         //       device: "bulkMeter",
+                    //         //       data: deviceTelemetryCosmosDBProduction,
+                    //         //     },
+                    //         //     {
+                    //         //       headers: {
+                    //         //         Authorization: `${sharesAccessSignature}`,
+                    //         //       },
+                    //         //     }
+                    //         //   )
+                    //         //   .then(
+                    //         //     (response) => {
+                    //         //       console.log("responseData Axios", response.status);
+                    //         //     },
+                    //         //     (error) => {
+                    //         //       console.log("errorData Axios", error);
+                    //         //     }
+                    //         //   );
+                    //         console.log("not sending data frame to  cosmos");
 
-                        }
-                    }
+                    //     }
+                    // }
                 }
             }, {
                 noAck: true,
