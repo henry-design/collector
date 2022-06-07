@@ -334,55 +334,55 @@ amqp.connect("amqp://localhost", function (error0, connection) {
           );
           // console.log(" [x] Received %s", msg.content.toString());
 
-          if (deviceTelemetryLoginProduction) {
-            //**  post to http endpoint
-            axios
-              .post(
-                "https://gosoftcoreapi.azurewebsites.net/api/Admin/LoginTelemetry",
-                deviceTelemetryLoginProduction,
+          // if (deviceTelemetryLoginProduction) {
+          //   //**  post to http endpoint
+          //   axios
+          //     .post(
+          //       "https://gosoftcoreapi.azurewebsites.net/api/Admin/LoginTelemetry",
+          //       deviceTelemetryLoginProduction,
 
-                {
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                }
-              )
-              .then(
-                (response) => {
-                  // console.log(
-                  //   "responseDataLoginFrame after post request",
-                  //   response.data
-                  // );
-                  console.log("responseData Axios", response.status);
-                },
-                (error) => {
-                  console.log("errorData Axios", error);
-                }
-              );
-          } else {
-            console.log("not sending login frames to cosmos db");
-            //   axios
-            //     .post(
-            //       "https://testBulkMeterIotHub.azure-devices.net/devices/bulkMeter/messages/events?api-version=2020-03-13",
-            //       {
-            //         device: "bulkMeter",
-            //         data: deviceTelemetryLoginProductionCosmosDb,
-            //       },
-            //       {
-            //         headers: {
-            //           Authorization: `${sharesAccessSignature}`,
-            //         },
-            //       }
-            //     )
-            //     .then(
-            //       (response) => {
-            //         console.log("responseData Axios", response.status);
-            //       },
-            //       (error) => {
-            //         console.log("errorData Axios", error);
-            //       }
-            //     );
-          }
+          //       {
+          //         headers: {
+          //           "Content-Type": "application/json",
+          //         },
+          //       }
+          //     )
+          //     .then(
+          //       (response) => {
+          //         // console.log(
+          //         //   "responseDataLoginFrame after post request",
+          //         //   response.data
+          //         // );
+          //         console.log("responseData Axios", response.status);
+          //       },
+          //       (error) => {
+          //         console.log("errorData Axios", error);
+          //       }
+          //     );
+          // } else {
+          //   console.log("not sending login frames to cosmos db");
+          //   //   axios
+          //   //     .post(
+          //   //       "https://testBulkMeterIotHub.azure-devices.net/devices/bulkMeter/messages/events?api-version=2020-03-13",
+          //   //       {
+          //   //         device: "bulkMeter",
+          //   //         data: deviceTelemetryLoginProductionCosmosDb,
+          //   //       },
+          //   //       {
+          //   //         headers: {
+          //   //           Authorization: `${sharesAccessSignature}`,
+          //   //         },
+          //   //       }
+          //   //     )
+          //   //     .then(
+          //   //       (response) => {
+          //   //         console.log("responseData Axios", response.status);
+          //   //       },
+          //   //       (error) => {
+          //   //         console.log("errorData Axios", error);
+          //   //       }
+          //   //     );
+          // }
         }
       },
       {
