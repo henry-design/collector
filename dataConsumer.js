@@ -1,6 +1,6 @@
 const amqp = require("amqplib/callback_api");
 const axios = require("axios");
-
+const fs = require('fs');
 // *! header section of message
 const header = "403A";
 // console.log(header);
@@ -480,15 +480,22 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                             108,
                             110
                         );
-                        console.log(dataBag," \n\n end of data bag");
+                        console.log(dataBag," \n end of data bag");
                         return dataBag
                     }
-
-
                     let message = parseDataFrame();
                    
+                   
+                   
 
-                    // for (var i = 0; i < message.length; i++) {
+                     for (var i = 0; i < message.length; i++) {
+                        fs.appendFile("./save.txt", `${JSON.stringify(message)}\n \n`, 'utf8', function (err) {
+                            if (err) {
+                                return console.log(err);
+                            }
+                        
+                            console.log("The file was saved!");
+                        });
                     //     const deviceTelemetryDataProduction = JSON.stringify(message[i]);
                         
                     //     // console.log(" [x] Received %s", msg.content.toString());
@@ -546,7 +553,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                     //         console.log("not sending data frame to  cosmos");
 
                     //     }
-                    // }
+                     }
                 }
             }, {
                 noAck: true,
