@@ -330,7 +330,7 @@ amqp.connect("amqp://localhost", function (error0, connection) {
           );
           console.log(
             "production data (login frame): ",
-            deviceTelemetryLoginProduction
+            deviceTelemetryLoginProduction,"\n"
           );
           // console.log(" [x] Received %s", msg.content.toString());
 
