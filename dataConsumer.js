@@ -460,7 +460,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                                     payload: `${intialPayloadDataFrameSend}`,
                                     clientAddressData: `${clientAddressDataFrameSend}`,
                                     alarmCodeData: `${alarmCodeDataFrameSendChoice}`,
-                                    collectingTimeData: `${formattedDate.toISOString()}`,
+                                    // collectingTimeData: `${formattedDate.toISOString()}`,
                                     negativeCummilativeFlowData: negativeCummilativeFlowDataFrameSendAnalysis,
                                     negativeCummilativeRunningTimeData: negativeCummilativeRunningTimeDataFrameSendAnalysis,
                                     positiveCumulativeFlowData: positiveCumulativeFlowDataFrameSendAnalysis,
