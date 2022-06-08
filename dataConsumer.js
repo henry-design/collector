@@ -442,6 +442,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                                 // ** Stop bit
 
                                 // console.log("stopBitDataFrameSend:", stopBitDataFrameSend);
+                                console.log("time: ",finalTimeData)
                                 deviceTelemetry = {
                                     //*? data frame data
 
@@ -460,7 +461,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                                     payload: `${intialPayloadDataFrameSend}`,
                                     clientAddressData: `${clientAddressDataFrameSend}`,
                                     alarmCodeData: `${alarmCodeDataFrameSendChoice}`,
-                                    collectingTimeData: `${formattedDate.toISOString()}`,
+                                    // collectingTimeData: `${formattedDate.toISOString()}`,
                                     negativeCummilativeFlowData: negativeCummilativeFlowDataFrameSendAnalysis,
                                     negativeCummilativeRunningTimeData: negativeCummilativeRunningTimeDataFrameSendAnalysis,
                                     positiveCumulativeFlowData: positiveCumulativeFlowDataFrameSendAnalysis,
