@@ -479,7 +479,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                             108,
                             110
                         );
-                        // console.log(dataBag);
+                        console.log(dataBag," \n\n end of data bag");
                         return dataBag
                     }
 
