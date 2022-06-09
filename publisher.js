@@ -247,7 +247,7 @@ amqp.connect("amqp://localhost", function (error0, connection) {
 
              this.send(
               (dataSent = new Buffer.from(
-                `403A000f${loginFrameClientAddress}09${clock}00${timing}${messageData.slice(messageData.length-4, messageData.length)}`,"hex"
+                `403A000f${loginFrameClientAddress}09${clock}00${timing}0d0a`,"hex"
                 
               ).toString("ascii")),
               remote.port,
