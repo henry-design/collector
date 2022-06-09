@@ -12,9 +12,43 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                         if (error1) {
                             throw error1;
                         }
+                        function getDateTime() {
+
+                          var date = new Date();
+                      
+                          var hour = date.getHours();
+                          hour = (hour < 10 ? "0" : "") + hour;
+                      
+                          var min  = date.getMinutes();
+                          min = (min < 10 ? "0" : "") + min;
+                      
+                          var sec  = date.getSeconds();
+                          sec = (sec < 10 ? "0" : "") + sec;
+                      
+                          var year = date.getFullYear();
+                      
+                          var month = date.getMonth() + 1;
+                          month = (month < 10 ? "0" : "") + month;
+                      
+                          var day  = date.getDate();
+                          day = (day < 10 ? "0" : "") + day;
+                      
+                          return year+month+day+hour+min+sec;
+                      
+                      }
+                      const YY=(parseInt(getDateTime().slice(2,4)).toString(16))
+                      const MM=(((parseInt(getDateTime().slice(4,6)).toString(16))<10?"0":"")+parseInt(getDateTime().slice(4,6)).toString(16))
+                      const DD=(((parseInt(getDateTime().slice(6,8)).toString(16))<10?"0":"")+parseInt(getDateTime().slice(6,8)).toString(16))
+                      const HH=(((parseInt(getDateTime().slice(8,10)).toString(16))<10?"0":"")+parseInt(getDateTime().slice(8,10)).toString(16))
+                      const MI=(((parseInt(getDateTime().slice(10,12)).toString(16))<10?"0":"")+parseInt(getDateTime().slice(10,12)).toString(16))
+                      const SS=(((parseInt(getDateTime().slice(12,14)).toString(16))<10?"0":"")+parseInt(getDateTime().slice(12,14)).toString(16))
+
+                       
+                          const clock = YY+MM+DD+HH+MI+SS
                         const queueOne = "loginframe";
                         const queueTwo = "dataframe";
-                       
+                        const queueThree = "timingCommand";
+                        
                         const server = [];
                         for (let i = 0; i < 1; i++) {
                             server[i] = dgram.createSocket("udp4");
@@ -137,7 +171,71 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                 );
               }
             );
-          } else {
+            const getTiming=(l1,
+              l2,
+              l3,
+              l4,
+              l5,
+              l6,
+              l7,
+              l8,
+              l9,
+              l10,
+              l11,
+              l12,
+              l13,
+              l14,
+              l15,
+              l16,
+              l17
+              )=>{
+                return parseInt(
+                  l1 + l2 + l3 + l4 + l5 + l6 + l7 + l8 + l9 + l10 + l11 + l12 + l13 + l14 + l15 + l16 + l17
+                )
+                  .toString(16)
+                  .slice(1, 3);
+
+              }
+            await this.send(
+              (dataSent = new Buffer.from(
+                `403A000f${loginFrameClientAddress}09${clock}00${getTiming(
+                  0x00,
+                  0x0f,
+                  Number(`0x${messageData.slice(8, 10)}`),
+                  Number(`0x${messageData.slice(10, 12)}`),
+                  Number(`0x${messageData.slice(12, 14)}`),
+                  Number(`0x${messageData.slice(14, 16)}`),
+                  Number(`0x${messageData.slice(16, 18)}`),
+                  Number(`0x${messageData.slice(18, 20)}`),
+                  0x09,
+                  Number(`0x${getDateTime().slice(2,4)}`),
+                  Number(`0x${getDateTime().slice(4,6)}`),
+                  Number(`0x${getDateTime().slice(6,8)}`),
+                  Number(`0x${getDateTime().slice(8,10)}`),
+                  Number(`0x${getDateTime().slice(10,12)}`),
+                  Number(`0x${getDateTime().slice(12,14)}`),
+                  Number(`0x${getDateTime().slice(14,16)}`),
+                  0x00
+                )}0D0A`,
+                "hex"
+
+              ).toString("ascii")),remote.port,
+              remote.address,
+              function (err, bytes) {
+                if (err) throw err;
+                console.log(
+                  `Timing Command Sent: ${Buffer.from(
+                    dataSent,
+                    "ascii"
+                  ).toString("hex")} bytes: ${bytes} sent to ${
+                    remote.address
+                  }:${remote.port}`
+                );
+              }
+            )
+            
+          } else if (messageData.slice(20, 22) == 09){
+            console.log(`Timing command: ${messageData}`)
             console.log("function code not 08 or 01");
           }
           const msg = messageData;
@@ -145,8 +243,9 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                   channel.sendToQueue(queueOne, Buffer.from(msg));
                 } else if (msg.slice(20, 22) == 08) {
                   channel.sendToQueue(queueTwo, Buffer.from(msg));
-                } else {
-                  console.log("msg slice not 01 or 08");
+                } else if (msg.slice(20, 22) == 09) {
+                  console.log(`Timing command: ${msg}`)
+                  channel.sendToQueue(queueThree, Buffer.from(msg));
                 }
           // console.log(" message sent to  :", msg, "message length", msg.length);
         }.bind(server[i])
