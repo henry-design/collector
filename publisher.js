@@ -89,7 +89,7 @@ amqp.connect("amqp://localhost", function (error0, connection) {
               10
             )
               .toString(16)
-              .slice(0, 2);
+              .slice(-2);
           };
           let loginFrameClientAddress = messageData.slice(8, 20);
           const loginCheck = getLoginFrame(
@@ -103,7 +103,7 @@ amqp.connect("amqp://localhost", function (error0, connection) {
             Number(`0x${messageData.slice(18, 20)}`),
             0x01,
             0x00
-          ).toString()
+          )
           console.log(loginCheck);
           if (messageData.slice(20, 22) == 01) {
             await this.send(
@@ -146,7 +146,7 @@ amqp.connect("amqp://localhost", function (error0, connection) {
                 10
               )
                 .toString(16)
-                .slice(0, 2);
+                .slice(-2);
             };
             const check = getDataFrame(
               0x00,
@@ -222,7 +222,7 @@ amqp.connect("amqp://localhost", function (error0, connection) {
                 10
               )
                 .toString(16)
-                .slice(0, 2);
+                .slice(-2);
               console.log(messageData.slice(messageData.length-4, messageData.length));
               return x;
             };
