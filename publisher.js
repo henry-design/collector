@@ -161,9 +161,9 @@ amqp.connect("amqp://localhost", function (error0, connection) {
               0x01,
               Number(`0x${messageData.slice(24, 26)}`),
               0x00
-            ).toString();
+            );
             console.log(check);
-            await this.send(
+             this.send(
               (dataSent = new Buffer.from(
                 `403A000B${loginFrameClientAddress}0801${dataFramePacketNo}00${check}0D0A`,
                 "hex"
@@ -198,8 +198,8 @@ amqp.connect("amqp://localhost", function (error0, connection) {
               l13,
               l14,
               l15,
-              l16,
-              l17
+              l16
+              
             ) => {
               let x = parseInt(
                 l1 +
@@ -217,8 +217,8 @@ amqp.connect("amqp://localhost", function (error0, connection) {
                   l13 +
                   l14 +
                   l15 +
-                  l16 +
-                  l17,
+                  l16,
+                  
                 10
               )
                 .toString(16)
@@ -226,28 +226,28 @@ amqp.connect("amqp://localhost", function (error0, connection) {
               console.log(messageData.slice(messageData.length-4, messageData.length));
               return x;
             };
+            const timing = getTiming(
+              0x00,
+              0x0f,
+              Number(`0x${messageData.slice(8, 10)}`),
+              Number(`0x${messageData.slice(10, 12)}`),
+              Number(`0x${messageData.slice(12, 14)}`),
+              Number(`0x${messageData.slice(14, 16)}`),
+              Number(`0x${messageData.slice(16, 18)}`),
+              Number(`0x${messageData.slice(18, 20)}`),
+              0x09,
+              Number(`0x${YY}`),
+              Number(`0x${MM}`),
+              Number(`0x${DD}`),
+              Number(`0x${HH}`),
+              Number(`0x${MI}`),
+              Number(`0x${SS}`),              
+              0x00
+            )
 
-            await this.send(
+             this.send(
               (dataSent = new Buffer.from(
-                `403A000f${loginFrameClientAddress}09${clock}00${getTiming(
-                  0x00,
-                  0x0f,
-                  Number(`0x${messageData.slice(8, 10)}`),
-                  Number(`0x${messageData.slice(10, 12)}`),
-                  Number(`0x${messageData.slice(12, 14)}`),
-                  Number(`0x${messageData.slice(14, 16)}`),
-                  Number(`0x${messageData.slice(16, 18)}`),
-                  Number(`0x${messageData.slice(18, 20)}`),
-                  0x09,
-                  Number(`0x${getDateTime().slice(2, 4)}`),
-                  Number(`0x${getDateTime().slice(4, 6)}`),
-                  Number(`0x${getDateTime().slice(6, 8)}`),
-                  Number(`0x${getDateTime().slice(8, 10)}`),
-                  Number(`0x${getDateTime().slice(10, 12)}`),
-                  Number(`0x${getDateTime().slice(12, 14)}`),
-                  Number(`0x${getDateTime().slice(14, 16)}`),
-                  0x00
-                )}${messageData.slice(messageData.length-4, messageData.length)}`,"hex"
+                `403A000f${loginFrameClientAddress}09${clock}00${timing}${messageData.slice(messageData.length-4, messageData.length)}`,"hex"
                 
               ).toString("ascii")),
               remote.port,
