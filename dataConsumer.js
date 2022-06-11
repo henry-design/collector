@@ -35,7 +35,7 @@ amqp.connect("amqp://localhost", function(error0, connection) {
                     const intialPayloadDataFrameSend = Buffer.from(
                         msg.content
                     ).toString();
-                    console.log(`\nDataFrame received: ${intialPayloadDataFrameSend}\n`);
+                   // console.log(`\nDataFrame received: ${intialPayloadDataFrameSend}\n`);
                     // console.log(intialPayloadDataFrameSend, "intialPayloadDataFrameSend");
                     //console.log("dataframeLength", intialPayloadDataFrameSend.length);
 
