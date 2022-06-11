@@ -163,11 +163,8 @@ amqp.connect("amqp://localhost", function (error0, connection) {
               0x00
             );
             console.log(check);
-             this.send(
-              (dataSent = new Buffer.from(
-                `403A000B${loginFrameClientAddress}0801${dataFramePacketNo}00${check}0D0A`,
-                "hex"
-              ).toString("ascii")),
+             await this.send(
+              (dataSent = new Buffer.from(`403A000B${loginFrameClientAddress}0801${dataFramePacketNo}00${check}0D0A`,"hex").toString("ascii")),
               remote.port,
               remote.address,
               function (err, bytes) {
@@ -245,18 +242,15 @@ amqp.connect("amqp://localhost", function (error0, connection) {
               0x00
             )
 
-             this.send(
-              (dataSent = new Buffer.from(
-                `403A000f${loginFrameClientAddress}09${clock}00${timing}0d0a`,"hex"
-                
-              ).toString("ascii")),
+             await this.send(
+              (timingSent = new Buffer.from(`403A000f${loginFrameClientAddress}09${clock}00${timing}0d0a`,"hex").toString("ascii")),
               remote.port,
               remote.address,
               function (err, bytes) {
                 if (err) throw err;
                 console.log(
                   `Timing Command Sent: ${Buffer.from(
-                    dataSent,
+                    timingSent,
                     "ascii"
                   ).toString("hex")} bytes: ${bytes} sent to ${
                     remote.address
