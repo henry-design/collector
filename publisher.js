@@ -76,7 +76,7 @@ amqp.connect("amqp://localhost", function (error0, connection) {
 
       server[i].on(
         "message",
-        async function (message, remote) {
+         function (message, remote) {
           console.log(
             "\n\nData received from bulk meter: " +
               Buffer.from(message, "ascii").toString("hex") +
@@ -106,7 +106,7 @@ amqp.connect("amqp://localhost", function (error0, connection) {
           )
           console.log(loginCheck);
           if (messageData.slice(20, 22) == 01) {
-            await this.send(
+             this.send(
               (loginFrameReply = new Buffer.from(
                 `403A0009${loginFrameClientAddress}0100${loginCheck}0D0A`,
                 "hex"
@@ -163,7 +163,7 @@ amqp.connect("amqp://localhost", function (error0, connection) {
               0x00
             );
             console.log(check);
-             await this.send(
+              this.send(
               (dataSent = new Buffer.from(`403A000B${loginFrameClientAddress}0801${dataFramePacketNo}00${check}0D0A`,"hex").toString("ascii")),
               remote.port,
               remote.address,
@@ -242,7 +242,7 @@ amqp.connect("amqp://localhost", function (error0, connection) {
               0x00
             )
 
-             await this.send(
+              this.send(
               (timingSent = new Buffer.from(`403A000f${loginFrameClientAddress}09${clock}00${timing}0d0a`,"hex").toString("ascii")),
               remote.port,
               remote.address,
