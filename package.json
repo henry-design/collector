@@ -12,7 +12,9 @@
         "amqplib": "^0.6.0",
         "axios": "^0.21.1",
         "body-parser": "^1.19.0",
+        "create-react-app": "^5.0.1",
         "nodemon": "^2.0.15",
+        "npx": "^10.2.2",
         "pm2": "^4.5.4"
     }
 }
