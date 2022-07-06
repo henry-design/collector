@@ -126,7 +126,7 @@ amqp.connect("amqp://localhost", function (error0, connection) {
               }
             );
           } else if (messageData.slice(20, 22) == 08) {
-            let dataFramePacketNo = messageData.slice(22, 24); //24,26
+            let dataFramePacketNo = messageData.slice(24, 26); //24,26
             const getDataFrame = (
               l1,
               l2,
